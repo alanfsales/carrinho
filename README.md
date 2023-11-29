@@ -8,10 +8,11 @@ Em Construção...
 - Maven
 - Spring Boot 3.2.0
 - Banco de dados H2
+- Lombok
 
 ### Visal Geral 
 
-Uma API simple onde um usuario interage com um carrinho de compras com os seguintes casos de uso: (Utilizei o Diagrams.net pra fazer o diagrama).
+Uma API simples onde um usuario interage com um carrinho de compras com os seguintes casos de uso: (Utilizei o Diagrams.net pra fazer o diagrama).
 
 ![Diagrama do cado de uso](https://github.com/alanfsales/assets/blob/main/Diagramas/DiagramaDeCasoDeUsoCarrinho.png)&nbsp;
 
