@@ -9,6 +9,7 @@ INSERT INTO produto(nome, descricao, preco, ativo) VALUES ('Bateria', 'Sem os Pr
 INSERT INTO produto(nome, descricao, preco, ativo) VALUES ('Jg de Pratos de Bateria', '4 Pratos', 3125.00, true);
 INSERT INTO produto(nome, descricao, preco, ativo) VALUES ('Afinador', 'Para Instrumentos de Corda ', 60.60, true);
 INSERT INTO produto(nome, descricao, preco, ativo) VALUES ('Cordas de Violão', 'Nylon com Bolinha', 25.00, true);
+INSERT INTO produto(nome, descricao, preco, ativo) VALUES ('Cordas de Guitarra', 'Calibre 09', 45.00, true);
 
 INSERT INTO carrinho(data, valor_total, aberto, usuario_id) VALUES (now(), 1660.60 , false, 1);
 
