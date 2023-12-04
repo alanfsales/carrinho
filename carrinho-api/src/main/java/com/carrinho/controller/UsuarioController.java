@@ -2,6 +2,7 @@ package com.carrinho.controller;
 
 import com.carrinho.model.Usuario;
 import com.carrinho.repository.UsuarioRepository;
+import com.carrinho.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @GetMapping
     public List<Usuario> listra(){
         return usuarioRepository.findAll();
@@ -22,7 +26,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public Usuario buscar(@PathVariable Long id){
-        return usuarioRepository.findById(id).get();
+        return usuarioService.buscar(id);
     }
 
     @PostMapping
