@@ -20,19 +20,19 @@ public class CarrinhoController {
     @Autowired
     private CarrinhoService carrinhoService;
 
-    @GetMapping
-    public List<Carrinho> listar(){
-        return carrinhoRepository.findAll();
-    }
-
-    @GetMapping("/{id}")
-    public Carrinho buscar(@PathVariable Long id){
-        return carrinhoService.buscar(id);
+    @GetMapping("/{usuarioId}")
+    public List<Carrinho> buscarPorUsuario(@PathVariable Long usuarioId){
+        return carrinhoService.buscarPorUsuario(usuarioId);
     }
 
     @PostMapping
     public Carrinho addItemCarrinho(@RequestBody ItemCarrinhoDTO itemCarrinhoDTO){
         return carrinhoService.addItemCarrinho(itemCarrinhoDTO);
+    }
+
+    @DeleteMapping
+    public Carrinho removeItemCarrinho(@RequestBody ItemCarrinhoDTO itemCarrinhoDTO){
+        return carrinhoService.removerItemCarrinho(itemCarrinhoDTO);
     }
 
 }

@@ -1,4 +1,5 @@
 INSERT INTO usuario(nome, email) VALUES ('Alan', 'alan@mail.com');
+INSERT INTO usuario(nome, email) VALUES ('Bob', 'bob@mail.com');
 
 INSERT INTO produto(nome, descricao, preco, ativo) VALUES ('Violão', 'Corda de Nylon', 659.00, true);
 INSERT INTO produto(nome, descricao, preco, ativo) VALUES ('Guitarra', 'Modelo Telecaster', 1600.00, true);
@@ -15,6 +16,11 @@ INSERT INTO carrinho(data, valor_total, aberto, usuario_id) VALUES (now(), 1660.
 
 INSERT INTO item_carrinho(preco_unitario, quantidade, preco_total, carrinho_id, produto_id) VALUES (1600.00, 1, 1600.00, 1, 2);
 INSERT INTO item_carrinho(preco_unitario, quantidade, preco_total, carrinho_id, produto_id) VALUES (60.60, 1, 60.60, 1, 8);
+
+INSERT INTO carrinho(data, valor_total, aberto, usuario_id) VALUES (now(), 8145.00 , false, 2);
+
+INSERT INTO item_carrinho(preco_unitario, quantidade, preco_total, carrinho_id, produto_id) VALUES (5020.00, 1, 5020.00, 2, 6);
+INSERT INTO item_carrinho(preco_unitario, quantidade, preco_total, carrinho_id, produto_id) VALUES (3125.00, 1, 3125.00, 2, 7);
 
 
 

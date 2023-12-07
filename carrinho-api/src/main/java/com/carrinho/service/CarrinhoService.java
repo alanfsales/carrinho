@@ -7,6 +7,8 @@ import com.carrinho.model.ItemCarrinho;
 import com.carrinho.model.Produto;
 import com.carrinho.model.Usuario;
 import com.carrinho.repository.CarrinhoRepository;
+import com.carrinho.repository.ItemCarrinhoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,31 +27,58 @@ public class CarrinhoService {
     @Autowired
     private ProdutoService produtoService;
 
-    public Carrinho buscar(Long id){
-        return carrinhoRepository.findById(id).orElseThrow(() ->
-                new EntidadeNaoExisteException("Não existe um carrinho com o id = " + id));
+    @Autowired
+    private ItemCarrinhoRepository itemCarrinhoRepository;
+
+    public Carrinho buscar(Long carrinhoId){
+        return carrinhoRepository.findById(carrinhoId).orElseThrow(() ->
+                new EntidadeNaoExisteException("Não existe um carrinho com o id = " + carrinhoId));
     }
 
-    public Carrinho temCarrinhoAbrerto(){
-        return carrinhoRepository.findByAberto(true);
+    public List<Carrinho> buscarPorUsuario(Long usuarioId){
+        Usuario usuario = usuarioService.buscar(usuarioId);
+        return carrinhoRepository.findByUsuario(usuario);
     }
 
     public Carrinho addItemCarrinho(ItemCarrinhoDTO itemCarrinhoDTO){
-        Carrinho carrinho = temCarrinhoAbrerto();
-        if (carrinho == null){
-            carrinho= new Carrinho();
-        }
+        Carrinho carrinho = pegaCarrinhoAbrerto();
+
         validarItem(itemCarrinhoDTO, carrinho);
 
-        List<ItemCarrinho>itens = carrinho.getItens();
-
-        for (ItemCarrinho iten : itens) {
+        for (ItemCarrinho iten : carrinho.getItens()) {
             iten.setCarrinho(carrinho);
             calcularPrecoTotalItem(iten);
         }
         calcularValorTotalCarrinho(carrinho);
 
         return carrinhoRepository.save(carrinho);
+    }
+
+    @Transactional
+    public Carrinho removerItemCarrinho(ItemCarrinhoDTO itemCarrinhoDTO){
+        Produto produto = produtoService.buscar(itemCarrinhoDTO.getProdutoId());
+        Carrinho carrinho = pegaCarrinhoAbrerto();
+
+        ItemCarrinho itemRemover = new ItemCarrinho();
+
+        for (ItemCarrinho item: carrinho.getItens()){
+            if (produto.equals(item.getProduto())){
+                itemRemover =item;
+            }
+        }
+
+        carrinho.getItens().remove(itemRemover);
+        itemCarrinhoRepository.delete(itemRemover);
+
+       calcularValorTotalCarrinho(carrinho);
+       return carrinhoRepository.save(carrinho);
+    }
+    private Carrinho pegaCarrinhoAbrerto(){
+        Carrinho carrinho = carrinhoRepository.findByAberto(true);
+        if (carrinho == null){
+            carrinho= new Carrinho();
+        }
+        return carrinho;
     }
 
     private void validarItem(ItemCarrinhoDTO itemCarrinhoDTO, Carrinho carrinho){

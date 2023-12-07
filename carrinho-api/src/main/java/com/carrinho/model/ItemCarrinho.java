@@ -1,14 +1,10 @@
 package com.carrinho.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
