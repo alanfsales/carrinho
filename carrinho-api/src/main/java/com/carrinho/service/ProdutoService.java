@@ -6,6 +6,8 @@ import com.carrinho.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProdutoService {
 
@@ -15,6 +17,10 @@ public class ProdutoService {
     public Produto buscar(Long id){
         return produtoRepository.findById(id).orElseThrow(() ->
                 new EntidadeNaoExisteException("Não existe um produto com o id = " + id));
+    }
+
+    public List<Produto> buscarPorNome(String nome){
+        return produtoRepository.findByNomeContaining(nome);
     }
 
 }

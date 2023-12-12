@@ -4,10 +4,7 @@ import com.carrinho.model.Produto;
 import com.carrinho.repository.ProdutoRepository;
 import com.carrinho.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,10 @@ public class ProdutosController {
     @GetMapping("/{id}")
     public Produto buscar(@PathVariable Long id){
         return produtoService.buscar(id);
+    }
+
+    @GetMapping(params = "nome")
+    public List<Produto> buscarPorNOme(@RequestParam String nome){
+        return produtoService.buscarPorNome(nome);
     }
 }

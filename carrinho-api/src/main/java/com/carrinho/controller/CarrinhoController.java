@@ -5,7 +5,6 @@ import com.carrinho.model.Carrinho;
 import com.carrinho.repository.CarrinhoRepository;
 import com.carrinho.service.CarrinhoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +19,14 @@ public class CarrinhoController {
     @Autowired
     private CarrinhoService carrinhoService;
 
-    @GetMapping("/{usuarioId}")
+    @GetMapping("/usuario/{usuarioId}")
     public List<Carrinho> buscarPorUsuario(@PathVariable Long usuarioId){
         return carrinhoService.buscarPorUsuario(usuarioId);
+    }
+
+    @GetMapping("/{carrinhoId}")
+    public Carrinho buscarPorId(@PathVariable Long carrinhoId){
+        return carrinhoService.buscar(carrinhoId);
     }
 
     @PostMapping
@@ -33,6 +37,11 @@ public class CarrinhoController {
     @DeleteMapping
     public Carrinho removeItemCarrinho(@RequestBody ItemCarrinhoDTO itemCarrinhoDTO){
         return carrinhoService.removerItemCarrinho(itemCarrinhoDTO);
+    }
+
+    @PutMapping("/usuario/{usuarioId}")
+    public Carrinho finalizarCarrinho(@PathVariable Long usuarioId){
+        return carrinhoService.finalizar(usuarioId);
     }
 
 }

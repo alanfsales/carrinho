@@ -31,8 +31,8 @@ public class CarrinhoService {
     private ItemCarrinhoRepository itemCarrinhoRepository;
 
     public Carrinho buscar(Long carrinhoId){
-        return carrinhoRepository.findById(carrinhoId).orElseThrow(() ->
-                new EntidadeNaoExisteException("Não existe um carrinho com o id = " + carrinhoId));
+         return carrinhoRepository.findById(carrinhoId).orElseThrow(() ->
+            new EntidadeNaoExisteException("Não existe um carrinho com o id = " + carrinhoId));
     }
 
     public List<Carrinho> buscarPorUsuario(Long usuarioId){
@@ -72,6 +72,12 @@ public class CarrinhoService {
 
        calcularValorTotalCarrinho(carrinho);
        return carrinhoRepository.save(carrinho);
+    }
+
+    public Carrinho finalizar(Long usuarioId){
+        Carrinho carrinho = pegaCarrinhoAbrerto();
+        carrinho.setAberto(false);
+        return carrinhoRepository.save(carrinho);
     }
     private Carrinho pegaCarrinhoAbrerto(){
         Carrinho carrinho = carrinhoRepository.findByAberto(true);
