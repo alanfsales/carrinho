@@ -10,7 +10,7 @@ Em Construção...
 - Banco de dados H2
 - Lombok
 
-### Visal Geral 
+### Visão Geral 
 
 Uma API simples onde um usuário interage com um carrinho de compras com os seguintes casos de uso: (Utilizei o Diagrams.net pra fazer o diagrama).
 
@@ -29,6 +29,7 @@ Modelagem do Bando de Dados. Utilizei o Mysql Workbench pra fazer.
 - [ ] Tratamento de Erros(Padronizar as respostas de erro)
 - [ ] Documentação(Swagger)
 - [ ] Deploy
+- [ ] Segurança(Token, Oauth2)
 - [x] Implementação dos EndPoints dos casos de uso.
 
 
