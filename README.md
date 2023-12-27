@@ -27,6 +27,7 @@ Modelagem do Bando de Dados. Utilizei o Mysql Workbench pra fazer.
 ### Próximos passos
 
 - [ ] Tratamento de Erros(Padronizar as respostas de erro)
+- [ ] Testes
 - [ ] Documentação(Swagger)
 - [ ] Deploy
 - [ ] Segurança(Token, Oauth2)
