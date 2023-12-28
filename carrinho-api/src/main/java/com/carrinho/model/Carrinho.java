@@ -24,7 +24,10 @@ public class Carrinho {
     private LocalDateTime data;
 
     private BigDecimal valorTotal;
+
     private boolean aberto = true;
+
+    private String formaDePagamento;
 
     @ManyToOne()
     private Usuario usuario;
